@@ -2,5 +2,4 @@
 Este es un proyecto para la universidad, en el que cree un pequeño backend siguiendo el paradigma de programacion orientado a objetos, implimentando una base de datos en 
 mysql 
 
-![alt](https://drive.google.com/drive/u/0/folders/1XLwIKWkveqxSiFAtOtFmjleDJAkmjh0T)
-git
+[![Captura-desde-2024-05-19-18-47-14.png](https://i.postimg.cc/xdxqwNmh/Captura-desde-2024-05-19-18-47-14.png)](https://postimg.cc/p9j28TqJ)
