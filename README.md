@@ -22,5 +22,9 @@ Creacion deproyecto
 
 <--------18 de mayo--------->
 1. crear las clases y los triggers para depositar y retirar -> hecho 
+
+`Connection connection = DriverManager.getConnection(ConexionBaseDatos.url, ConexionBaseDatos.user, ConexionBaseDatos.pss);
+            Boolean Confirmacion  = ConexionBaseDatos.ValidacionUsuario(Usuario);
+            int Id_Usuario = ConexionBaseDatos.RecueprarId(Usuario);`
                                         
 # BackendBanco
