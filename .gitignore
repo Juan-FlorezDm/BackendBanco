@@ -1,2 +1,3 @@
-/src/Claves.java
-/bin/*.class
+./src/Claves.java
+./bin/*.class
+./src/img/*
