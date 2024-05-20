@@ -50,8 +50,5 @@ public class Prestamos {
             System.out.println(e);
         }
     }
-    public static void main(String[] args) {
-        GenerarNuevoPrestamo("x", 100000000, 20);
-    }
 }
 

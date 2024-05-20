@@ -27,8 +27,4 @@ public class Extracto {
             System.out.println(e);
         }
     }
-
-    public static void main(String[] args) {
-        SolicitarExtracto("Juan");
-    }
 }

@@ -25,8 +25,4 @@ public class CDT {
             System.out.println(e);
         }
     }
-
-    public static void main(String[] args) {
-        IngresarDinero("Diego", 2000, 1);
-    }
 }

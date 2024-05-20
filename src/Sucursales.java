@@ -29,8 +29,4 @@ public class Sucursales {
             System.out.println(e);
         }
     }
-
-    public static void main(String[] args) {
-        CajerosDisponibles("Cra 96 #85");
-    }
 }

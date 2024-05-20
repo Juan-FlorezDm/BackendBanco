@@ -35,8 +35,4 @@ public class Depositar {
             System.out.println(e);
         }
     }
-
-    public static void main(String[] args) {
-        DepositarDinero("Juan", 20302);
-    }
 }

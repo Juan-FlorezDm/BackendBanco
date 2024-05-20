@@ -44,8 +44,4 @@ public class CuentaBancaria {
             System.out.println(e);
         }
     }
-
-    public static void main(String[] args) {
-        CrearCuenta("Rodriguex", 2);
-    }
 }

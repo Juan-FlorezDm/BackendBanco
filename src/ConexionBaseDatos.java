@@ -126,8 +126,4 @@ public class ConexionBaseDatos {
             return 0;
         }
     }
-
-    public static void main(String[] args) {
-        RecueprarId("juan");
-    }
 }
