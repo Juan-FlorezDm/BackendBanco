@@ -6,6 +6,26 @@ import java.sql.SQLException;
 
 
 public class Pagar {
+
+    public static Integer getSaldo(String Usario){
+
+        try {
+            Connection connection = DriverManager.getConnection(ConexionBaseDatos.url, ConexionBaseDatos.user, ConexionBaseDatos.pss);
+            String query = "select Saldo from CuentaBancaria where Id_Usuario=?";
+            PreparedStatement in = connection.prepareStatement(query);
+            in.setInt(1, ConexionBaseDatos.RecueprarId(Usario));
+            
+            ResultSet res = in.executeQuery();
+            if(res.next()){
+                return res.getInt("Saldo");
+            }else{
+                return 0;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        }
+    }
     public static void PagarDinero(int ValorPago, String Usuario){
         try {
             Connection connection = DriverManager.getConnection(ConexionBaseDatos.url, ConexionBaseDatos.user, ConexionBaseDatos.pss);
@@ -36,8 +56,5 @@ public class Pagar {
         } catch (SQLException e) {
             System.out.println(e);
         }
-    }
-    public static void main(String[] args) {
-        PagarDinero(20302, "Juan");
     }
 }
