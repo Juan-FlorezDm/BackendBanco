@@ -8,7 +8,7 @@ public class ConexionBaseDatos {
 
     public static String url = "jdbc:mysql://localhost:3306/BancoProyecto";
     public static String user = "root";
-    public static String pss = Claves.pss;
+    public static String pss = Clave.pss;
 
     public static void Conexion(){
         try {
