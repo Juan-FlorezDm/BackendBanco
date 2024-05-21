@@ -1,3 +1,3 @@
 public class Claves {
-    public static final String pss = "JUAn27022";
+    public static String pss = "JUAn27022";
 }
