@@ -20,31 +20,6 @@ public class ConexionBaseDatos {
         }
     }
 
-    public static void IngresarUser(String User, int Cedula, int NumeroContacto){
-        String query =  "INSERT INTO Usuarios(Nombre, Cedula, NumeroContacto) values (?,?,?)";
-        try {
-            Connection con =  DriverManager.getConnection(url, user, pss);
-            PreparedStatement ingresar= con.prepareStatement(query);
-
-            ingresar.setString(1, User);
-            ingresar.setInt(2, Cedula);
-            ingresar.setInt(3, NumeroContacto);
-
-            int FilasAfectadas = ingresar.executeUpdate();
-
-            if (FilasAfectadas > 0) {
-                System.out.println("Datos insertados correctamente.");
-            } else {
-                System.out.println("No se pudieron insertar los datos.");
-            }
-            
-            con.close();
-
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-    }
-
     public static boolean ValidacionUsuario(String Nombre){
         try {
             Connection con =  DriverManager.getConnection(url, user, pss);
@@ -63,50 +38,6 @@ public class ConexionBaseDatos {
         }
     }
 
-    public static boolean ValidacionPrestamo(String Usuario){
-
-        try {
-            Connection con =  DriverManager.getConnection(url, user, pss);
-
-            String nomUsuario = "select Id from Usuarios where Nombre=?";
-            PreparedStatement recuperar = con.prepareStatement(nomUsuario);
-            recuperar.setString(1, Usuario);
-
-            ResultSet res = recuperar.executeQuery();
-            
-
-            int Id_Usuario = 0;
-            if(res.next()){
-                Id_Usuario = res.getInt("Id");
-                String consulta = "SELECT Id_Usuario FROM Prestamos WHERE Id_Usuario=?";
-                PreparedStatement query = con.prepareStatement(consulta);
-            
-                query.setInt(1, Id_Usuario);
-                ResultSet resultSet = query.executeQuery();
-
-                int TotalPrestamosActivos = 0;
-                if (resultSet.next()) {
-                    do {
-                        TotalPrestamosActivos++;
-                    } while (resultSet.next());
-                }
-
-                if(TotalPrestamosActivos < 2){
-                    return true;
-                }else{
-                    System.out.println("Ya tiene muchos prestamos activos");
-                    return false;
-                }
-                
-            } else{
-                System.out.println("No se ecuentra ese nombre en la base de datos");
-                return false;
-            }
-        } catch (SQLException e) {
-            System.out.println(e);      
-            return false;      
-        }
-    }
 
     public static Integer RecueprarId (String Usuario){
         try {

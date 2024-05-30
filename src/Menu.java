@@ -22,7 +22,7 @@ public class Menu {
                     int Cedula = Integer.parseInt(System.console().readLine());
                     System.out.print("Ingrese su Numero de contacto: ");
                     int NumeroContacto = Integer.parseInt(System.console().readLine());
-                    ConexionBaseDatos.IngresarUser(Nombre, Cedula, NumeroContacto);
+                    Usuario.IngresarUser(Nombre, Cedula, NumeroContacto);
                     break;
 
                 case 2:
@@ -96,7 +96,7 @@ public class Menu {
                                 System.out.print("Ingresa tu usuario: ");
                                 String user = System.console().readLine();
                                 if (ConexionBaseDatos.ValidacionUsuario(user)) {
-                                    if (ConexionBaseDatos.ValidacionPrestamo(user)) {
+                                    if (Prestamos.ValidacionPrestamo(user)) {
                                         System.out.print("Ingresa el valor del préstamo: ");
                                         int valor = Integer.parseInt(System.console().readLine());
                                         System.out.print("Ingresa a cuántos años sacarás el préstamo: ");

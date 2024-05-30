@@ -5,10 +5,49 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Prestamos {
-    //verifica si el usurio existe si existe verfica si puede solocitar un prestamo
-    public static void SolicitarPrestamoUsuario(String Usuario){
-        if(ConexionBaseDatos.ValidacionPrestamo(Usuario)){
-            System.out.println("Puedes solicitar otro prestamo");
+
+    public static boolean ValidacionPrestamo(String Usuario){
+
+        try {
+            Connection con =  DriverManager.getConnection(ConexionBaseDatos.url, ConexionBaseDatos.user, ConexionBaseDatos.pss);
+
+            String nomUsuario = "select Id from Usuarios where Nombre=?";
+            PreparedStatement recuperar = con.prepareStatement(nomUsuario);
+            recuperar.setString(1, Usuario);
+
+            ResultSet res = recuperar.executeQuery();
+            
+
+            int Id_Usuario = 0;
+            if(res.next()){
+                Id_Usuario = res.getInt("Id");
+                String consulta = "SELECT Id_Usuario FROM Prestamos WHERE Id_Usuario=?";
+                PreparedStatement query = con.prepareStatement(consulta);
+            
+                query.setInt(1, Id_Usuario);
+                ResultSet resultSet = query.executeQuery();
+
+                int TotalPrestamosActivos = 0;
+                if (resultSet.next()) {
+                    do {
+                        TotalPrestamosActivos++;
+                    } while (resultSet.next());
+                }
+
+                if(TotalPrestamosActivos < 2){
+                    return true;
+                }else{
+                    System.out.println("Ya tiene muchos prestamos activos");
+                    return false;
+                }
+                
+            } else{
+                System.out.println("No se ecuentra ese nombre en la base de datos");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);      
+            return false;      
         }
     }
 
@@ -22,7 +61,7 @@ public class Prestamos {
 
             ResultSet respuesta= recuperar.executeQuery();
 
-            if(ConexionBaseDatos.ValidacionPrestamo(Usuario)){
+            if(ValidacionPrestamo(Usuario)){
                 String IngresarNuevoPrestamo = "insert into Prestamos (Valor, Plazo, Id_Usuario) values (?,?,?)";
                 PreparedStatement ingresarquery = connection.prepareStatement(IngresarNuevoPrestamo);
 
